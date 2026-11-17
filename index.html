@@ -2,66 +2,40 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>V2X — Play. Watch. Explore.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090d18">
+<title>V2X Gaming Browser</title>
 <style>
-:root{--bg:#080b14;--panel:#111827;--panel2:#151f31;--line:#26344b;--text:#edf4ff;--muted:#9aa9c0;--cyan:#55e6ff;--purple:#a78bfa;--pink:#ff67c4}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#17264a 0,transparent 42%),radial-gradient(ellipse at 90% 10%,#321c50 0,transparent 35%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
-header{display:flex;align-items:center;justify-content:space-between;padding:18px clamp(18px,5vw,64px);border-bottom:1px solid #26344b99;backdrop-filter:blur(12px);position:sticky;top:0;background:#080b14d9;z-index:5}
-.logo{font-weight:900;letter-spacing:3px;font-size:23px}.logo span{color:var(--cyan)}.tag{color:var(--muted);font-size:12px;letter-spacing:1.5px;margin-left:10px}
-nav{display:flex;gap:8px;flex-wrap:wrap}button,.tab{border:1px solid var(--line);background:#111827;color:var(--text);padding:9px 14px;border-radius:11px;cursor:pointer;font:inherit}button:hover,.tab.active{border-color:var(--cyan);background:#123040}
-main{width:min(1120px,92vw);margin:42px auto 70px}.hero{text-align:center;padding:38px 10px 30px}.eyebrow{color:var(--cyan);font-weight:700;letter-spacing:3px;font-size:12px}.hero h1{font-size:clamp(34px,6vw,62px);line-height:1.05;margin:12px 0;background:linear-gradient(90deg,#fff,var(--cyan),var(--purple));background-clip:text;color:transparent}.hero p{color:var(--muted);margin:0 auto 25px;max-width:560px}
-.search{display:flex;max-width:700px;margin:auto;background:#101827;border:1px solid #3b526e;border-radius:16px;padding:7px;box-shadow:0 12px 50px #0008}.search input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:white;padding:12px;font-size:16px}.search button{background:linear-gradient(120deg,#167b98,#6747a9);border:0;font-weight:700}
-.section-head{display:flex;justify-content:space-between;align-items:end;margin:35px 0 14px}.section-head h2{margin:0;font-size:23px}.section-head small{color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{background:linear-gradient(145deg,#172237,#0f1726);border:1px solid var(--line);border-radius:18px;padding:19px;min-height:150px;transition:.2s}.card:hover{transform:translateY(-3px);border-color:#5bdcf0}.icon{font-size:28px}.card h3{margin:9px 0 4px}.card p{color:var(--muted);margin:0 0 13px;font-size:13px}.card a{color:var(--cyan);text-decoration:none;font-weight:700}.panel{background:#0e1625eF;border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:18px}.panel h2{margin:0 0 12px}.game-wrap{display:grid;grid-template-columns:1fr 220px;gap:18px;align-items:start}.game-wrap canvas{width:100%;max-width:440px;background:#050a12;border:1px solid #30435d;border-radius:12px;display:block;image-rendering:pixelated}.game-side p{color:var(--muted);font-size:13px}.controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.media-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}.media-controls input[type=file]{max-width:100%;color:var(--muted)}video,audio{width:100%;margin-top:10px;border-radius:12px;background:#05070c}footer{text-align:center;color:#71819a;padding:20px;font-size:12px}
-@media(max-width:760px){.grid{grid-template-columns:1fr 1fr}.game-wrap{grid-template-columns:1fr}header{align-items:flex-start;gap:12px;flex-direction:column}.tag{display:block;margin:0}}
-@media(max-width:480px){.grid{grid-template-columns:1fr}.hero{padding-top:25px}.section-head{align-items:start;gap:8px;flex-direction:column}}
+*{box-sizing:border-box}
+body{margin:0;background:#090d18;color:#eef4ff;font-family:Arial,sans-serif}
+header,main{max-width:1000px;margin:auto;padding:20px}
+h1 span{color:#65e6ff}
+nav{display:flex;gap:12px;flex-wrap:wrap}
+nav a,.panel,.game{background:#17243a;padding:15px;border-radius:12px}
+nav a{color:#65e6ff;text-decoration:none}
+.panel,.game{margin:15px 0}
+input{width:100%;padding:12px;margin:7px 0;background:#080f1d;color:white;border:1px solid #456;border-radius:8px}
+button{padding:12px;border:0;border-radius:8px;background:#65e6ff;color:#07111d;font-weight:bold;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.game a{color:#65e6ff}
+video,iframe,audio{width:100%;margin-top:12px;border-radius:10px}
+p{color:#b8c5d9}
 </style>
 </head>
 <body>
-<header><div><div class="logo">V2<span>X</span></div><div class="tag">PLAY · WATCH · EXPLORE</div></div><nav><button class="tab active" data-target="home">Home</button><button class="tab" data-target="games">Games</button><button class="tab" data-target="media">Media</button></nav></header>
-<main id="home">
-<section class="hero">
-<div class="eyebrow">YOUR DIGITAL HANGOUT</div><h1>Enter the V2X zone.</h1>
-<p>A neon gaming hub with quick web search, mini-games and a media player — all in one page.</p>
-<form class="search" id="searchForm"><input id="searchInput" placeholder="Search the web…" autocomplete="off" aria-label="Search the web"><button type="submit">Search ↗</button></form>
+<header>
+<h1><span>V2X</span> GAMING BROWSER</h1>
+<p>Your gaming and media hangout.</p>
+<nav>
+<a href="#games">Games</a>
+<a href="#media">Media Centre</a>
+<a href="#search">Search</a>
+</nav>
+</header>
+
+<main>
+<section class="panel" id="search">
+<h2>🔎 DuckDuckGo Search</h2>
+<input id="query" placeholder="Search the web...">
+<button onclick="searchWeb()">Search</button>
 </section>
-<div class="section-head"><h2>Quick launch</h2><small>Pick your next destination</small></div>
-<section class="grid">
-<article class="card"><div class="icon">🎮</div><h3>Arcade</h3><p>Play the built-in Snake mini-game.</p><a href="#games" class="jump" data-target="games">Open games →</a></article>
-<article class="card"><div class="icon">▶️</div><h3>Media player</h3><p>Play video or music files from your device.</p><a href="#media" class="jump" data-target="media">Open player →</a></article>
-<article class="card"><div class="icon">🌐</div><h3>Explore</h3><p>Jump to popular sites in a new tab.</p><a href="https://www.wikipedia.org/" target="_blank" rel="noopener">Explore the web →</a></article>
-</section>
-<div class="section-head"><h2>Featured sites</h2><small>Opens in a new tab</small></div>
-<section class="grid">
-<article class="card"><div class="icon">🕹️</div><h3>CrazyGames</h3><p>Browser games across lots of genres.</p><a href="https://www.crazygames.com/" target="_blank" rel="noopener">Visit site ↗</a></article>
-<article class="card"><div class="icon">🎧</div><h3>SoundCloud</h3><p>Discover music and audio.</p><a href="https://soundcloud.com/" target="_blank" rel="noopener">Visit site ↗</a></article>
-<article class="card"><div class="icon">📺</div><h3>YouTube</h3><p>Videos, creators and playlists.</p><a href="https://www.youtube.com/" target="_blank" rel="noopener">Visit site ↗</a></article>
-</section>
-</main>
-<main id="games" hidden>
-<div class="section-head"><h2>🎮 V2X Arcade</h2><small>Mini-game built into this page</small></div>
-<div class="panel game-wrap"><div><canvas id="snake" width="400" height="400" aria-label="Snake game"></canvas><div class="controls"><button id="startGame">Start / Restart</button><button id="pauseGame">Pause</button></div></div><div class="game-side"><h3>Snake</h3><p>Use the arrow keys or WASD to guide the snake. Eat the glowing food and avoid the walls and your tail.</p><p><strong>Score: <span id="score">0</span></strong></p><p id="gameMessage">Press Start / Restart to play.</p></div></div>
-<div class="section-head"><h2>More games</h2></div><section class="grid"><article class="card"><div class="icon">🧩</div><h3>Puzzle games</h3><p>Browse quick brain games.</p><a href="https://www.crazygames.com/t/puzzle" target="_blank" rel="noopener">Play ↗</a></article><article class="card"><div class="icon">🏎️</div><h3>Racing games</h3><p>Find a racing game to try.</p><a href="https://www.crazygames.com/t/racing" target="_blank" rel="noopener">Play ↗</a></article><article class="card"><div class="icon">⚽</div><h3>Sports games</h3><p>Explore sports games.</p><a href="https://www.crazygames.com/t/sports" target="_blank" rel="noopener">Play ↗</a></article></section>
-</main>
-<main id="media" hidden>
-<div class="section-head"><h2>▶️ V2X Media Deck</h2><small>Your local media player</small></div>
-<div class="panel"><h3>Choose a video or audio file</h3><p style="color:var(--muted)">Pick a file stored on your device. It plays in this page; it is not uploaded anywhere.</p><div class="media-controls"><input id="mediaFile" type="file" accept="video/*,audio/*"></div><video id="videoPlayer" controls hidden></video><audio id="audioPlayer" controls hidden></audio><p id="mediaMessage" style="color:var(--muted)">No file selected yet.</p></div>
-<div class="panel"><h3>Watch online</h3><p style="color:var(--muted)">Open a streaming site in a new tab. Some services may require an account.</p><div class="controls"><a class="tab" href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube ↗</a><a class="tab" href="https://www.twitch.tv/" target="_blank" rel="noopener">Twitch ↗</a></div></div>
-</main>
-<footer>V2X • A fan-made browser-style start page. Not a full standalone web browser.</footer>
-<script>
-const tabs=document.querySelectorAll('[data-target]');function show(target){['home','games','media'].forEach(id=>document.getElementById(id).hidden=id!==target);document.querySelectorAll('nav .tab').forEach(b=>b.classList.toggle('active',b.dataset.target===target));window.scrollTo({top:0,behavior:'smooth'});}
-tabs.forEach(el=>el.addEventListener('click',e=>{e.preventDefault();show(el.dataset.target)}));
-document.getElementById('searchForm').addEventListener('submit',e=>{e.preventDefault();const q=document.getElementById('searchInput').value.trim();if(q)window.open('https://www.google.com/search?q='+encodeURIComponent(q),'_blank','noopener');});
-const canvas=document.getElementById('snake'),ctx=canvas.getContext('2d'),scoreEl=document.getElementById('score'),msg=document.getElementById('gameMessage');const cell=20,tiles=20;let snake,food,dir,nextDir,score,timer,running=false;
-function reset(){snake=[{x:9,y:10},{x:8,y:10},{x:7,y:10}];dir={x:1,y:0};nextDir={x:1,y:0};score=0;scoreEl.textContent=score;placeFood();running=true;msg.textContent='Game on!';clearInterval(timer);timer=setInterval(tick,115);draw();}
-function placeFood(){do{food={x:Math.floor(Math.random()*tiles),y:Math.floor(Math.random()*tiles)}}while(snake?.some(s=>s.x===food.x&&s.y===food.y));}
-function draw(){ctx.fillStyle='#050a12';ctx.fillRect(0,0,400,400);ctx.strokeStyle='#142239';for(let i=0;i<=400;i+=cell){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,400);ctx.stroke();ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(400,i);ctx.stroke();}ctx.fillStyle='#ff67c4';ctx.shadowColor='#ff67c4';ctx.shadowBlur=14;ctx.fillRect(food.x*cell+4,food.y*cell+4,12,12);ctx.shadowBlur=0;snake.forEach((s,i)=>{ctx.fillStyle=i===0?'#55e6ff':'#3288a7';ctx.fillRect(s.x*cell+2,s.y*cell+2,16,16);});}
-function tick(){dir=nextDir;const head={x:snake[0].x+dir.x,y:snake[0].y+dir.y};if(head.x<0||head.y<0||head.x>=tiles||head.y>=tiles||snake.some(s=>s.x===head.x&&s.y===head.y)){clearInterval(timer);running=false;msg.textContent='Game over! Press Start / Restart to try again.';return;}snake.unshift(head);if(head.x===food.x&&head.y===food.y){score++;scoreEl.textContent=score;placeFood();}else snake.pop();draw();}
-document.addEventListener('keydown',e=>{const map={ArrowUp:{x:0,y:-1},w:{x:0,y:-1},ArrowDown:{x:0,y:1},s:{x:0,y:1},ArrowLeft:{x:-1,y:0},a:{x:-1,y:0},ArrowRight:{x:1,y:0},d:{x:1,y:0}};const n=map[e.key]||map[e.key.toLowerCase()];if(n&&!(n.x===-dir.x&&n.y===-dir.y)){nextDir=n;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key))e.preventDefault();}});
-document.getElementById('startGame').onclick=reset;document.getElementById('pauseGame').onclick=()=>{if(running){clearInterval(timer);running=false;msg.textContent='Paused.';}else if(snake){running=true;timer=setInterval(tick,115);msg.textContent='Game on!';}};
-let currentUrl=null;document.getElementById('mediaFile').addEventListener('change',e=>{const file=e.target.files[0];if(!file)return;if(currentUrl)URL.revokeObjectURL(currentUrl);currentUrl=URL.createObjectURL(file);const video=document.getElementById('videoPlayer'),audio=document.getElementById('audioPlayer');video.pause();audio.pause();video.hidden=!file.type.startsWith('video/');audio.hidden=!file.type.startsWith('audio/');if(video.hidden){video.removeAttribute('src');audio.src=currentUrl;}else{audio.removeAttribute('src');video.src=currentUrl;}document.getElementById('mediaMessage').textContent='Now playing: '+file.name;});
-</script>
-</body>
-</html>
